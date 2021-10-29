@@ -4,7 +4,7 @@ import pandas as pd
 import numpy as np
 import math
 import sys
-
+import bitcoin
 
 # The path to the data folder should be given as input
 if len(sys.argv) != 2:
@@ -12,6 +12,22 @@ if len(sys.argv) != 2:
     sys.exit(1)
 data_path = sys.argv[1]
 
+# The path to the data folder should be given as input
+if len(sys.argv) != 2:
+    print('bitcoin.py <path to data folder>')
+    sys.exit(1)
+data_path = sys.argv[1]
+
+#Generate private key
+my_private_key = random_key()
+#display private key
+print("Private Key: %sn" % my_private_key)
+#Generate public key
+my_public_key = privtopub(my_private_key)
+print("Public Key: %sn" % my_public_key)
+#Create a bitcoin address
+my_bitcoin_address = pubtoaddr(my_public_key)
+print("Bitcoin Address: %sn" % my_bitcoin_address)
 
 # Reading the vectors from the given csv files
 train1_90 = pd.read_csv(data_path+'/train1_90.csv')
